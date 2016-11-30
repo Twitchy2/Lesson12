@@ -31,13 +31,13 @@ app.factory('teams', ['$http', function ($http) {
     //delete
     t.deleteTeam = function (_id, index) {
         //save monger, execute blah blah
-        return $http.delete('/teams/' + _id, { _id: _id }).success(function(data) {
-                t.teams.splice(index, 1);
-        }); 
+        return $http.delete('/teams/' + _id, { _id: _id }).success(function (data) {
+            t.teams.splice(index, 1);
+        });
     };
-    t.updateTeam = function(team) {
-        return $http.put('/teams/' + team._id, team).success(function(data) {
-            t.getTeams();   
+    t.updateTeam = function (team) {
+        return $http.put('/teams/' + team._id, team).success(function (data) {
+            t.getTeams();
         });
     }
     //put team array into controller
@@ -76,22 +76,21 @@ app.controller('TeamController', ['$scope', 'teams', function ($scope, teams) {
             teams.deleteTeam(_id, index);
             //refresh list
             $scope.getTeams();
-            
         }
     };
     //select single team
-    $scope.selectTeam = function(index) {
+    $scope.selectTeam = function (index) {
         var team = $scope.teams[index];
         //populate
         $scope._id = team['_id'];
         $scope.city = team['city'];
         $scope.nickname = team['nickname'];
         $scope.wins = team['wins'];
-        $scope.losses = team['losses']; 
+        $scope.losses = team['losses'];
     };
 
     //update
-    $scope.updateTeam = function() {
+    $scope.updateTeam = function () {
         var team = {
             _id: $scope._id,
             city: $scope.city,
