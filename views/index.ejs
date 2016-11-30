@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>COMP2068 | MEAN Stack Single Page App</title>
+
+    <!--css -->
+    <link type="text/css" rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
+
+    <link type="text/css" rel="stylesheet" href="/stylesheets/bootstrap-theme.min.css" />
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <a class="navbar-brand" href="/">COMP2068 MEAN Stack SPA</a>
+    <ul class="nav navbar-nav">
+        <li><a href="/"></a></li>
+    </ul>
+</nav>
+
+<main class="container" ng-app="TeamApp" ng-controller="TeamController" ng-init="getTeams()">
+
+    <h1>Team Manager</h1>
+
+    <section class="form-group jumbotron">
+        <h2>Add a New Team</h2>
+        <form>
+            <fieldset class="form-group">
+                <label for="city" class="control-label col-sm-3">City:</label>
+                <input name="city" id="city" ng-model="city" />
+            </fieldset>
+            <fieldset class="form-group">
+                <label for="nickname" class="control-label col-sm-3">Nickname:</label>
+                <input name="nickname" id="nickname" ng-model="nickname" />
+            </fieldset>
+            <fieldset class="form-group">
+                <label for="wins" class="control-label col-sm-3">Wins:</label>
+                <input name="wins" id="wins" ng-model="wins" type="number" />
+            </fieldset>
+            <fieldset class="form-group">
+                <label for="losses" class="control-label col-sm-3">Losses:</label>
+                <input name="losses" id="losses" ng-model="losses" type="number" />
+            </fieldset>
+            <button class="btn btn-success col-sm-offset-3" ng-click="addTeam()">Add</button>
+            <button class="btn btn-success col-sm-offset-3" ng-click="updateTeam()" ng-show="_id">Update</button>
+            <input name="_id" id="_id" ng-model="_id" type="text" />
+        </form>
+    </section>
+
+    <section>
+        <h2>Team List</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>City</th>
+                <th>Nickname</th>
+                <th>Wins</th>
+                <th>Losses</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr ng-repeat="t in teams track by $index">
+                <td> {{ t.city }} </td>
+                <td>{{ t.nickname }}</td>
+                <td>{{ t.wins }}</td>
+                <td>{{ t.losses }}</td>
+                <td><button class="btn btn-primary" ng-click="selectTeam(t._id, $index)">Edit</button></td>
+                <td><button class="btn btn-danger" ng-click="deleteTeam(t._id, $index)">Delete</button></td>
+                
+            </tr>
+        </table>
+    </section>
+
+</main>
+
+<!--js-->
+<script src="/javascripts/angular.min.js"></script>
+<script src="/javascripts/angular-ui-router.js"></script>
+<script src="/javascripts/jquery-3.1.1.min.js"></script>
+<script src="/javascripts/bootstrap.min.js"></script>
+<script src="/javascripts/scripts.js"></script>
+
+<footer class="alert alert-info">
+    &copy; 2016 | COMP2068 - Advanced Web Programming
+</footer>
+
+</body>
+</html>
+
