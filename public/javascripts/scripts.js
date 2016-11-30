@@ -76,6 +76,7 @@ app.controller('TeamController', ['$scope', 'teams', function ($scope, teams) {
             teams.deleteTeam(_id, index);
             //refresh list
             $scope.getTeams();
+            
         }
     };
     //select single team
